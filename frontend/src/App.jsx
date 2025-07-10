@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="max-w-2xl mx-auto mt-10 space-y-6">
-      <h1 className="text-3xl font-bold text-center">🧠 AI NoteGen</h1>
+      <h1 className="text-3xl font-bold text-center text-gray-100">🧠 AI NoteGen</h1>
       <NoteForm onNoteCreated={reloadNotes}/>
       <NoteList refresh={refresh}/>
     </div>
