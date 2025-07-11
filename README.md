@@ -1,4 +1,4 @@
-# 🧠 AI NoteGen
+# 🧠 AI NoteGen (aun no agrego AI)
 
 **AI NoteGen** es una aplicación web completa que te permite gestionar tus notas de forma sencilla y eficaz. Crea, edita, elimina y visualiza tus notas en una interfaz limpia e intuitiva.
 
