@@ -8,9 +8,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Crear el directorio para la base de datos
-RUN mkdir /app/data
-
 COPY ./app ./app
 
 # Exponer puerto
