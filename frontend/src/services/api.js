@@ -1,8 +1,9 @@
 import axios from "axios";
 
+const apiurl = import.meta.env.VITE_API_URL;
+
 const api = axios.create({
-    //baseURL: "http://192.168.11.251:8000" debo pasarlo a variable de entorno
-    baseURL: "http://localhost:8000"
+    baseURL: apiurl
 });
 
 export const getNotes = () => api.get("/notes");
