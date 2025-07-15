@@ -6,7 +6,7 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - /home/fran/docker/envs/backend_ainotege.env
+      - /home/fran/docker/envs/backend_ainotegen.env
     networks:
       - app-network
 
@@ -15,7 +15,7 @@ services:
     ports:
       - "5173:5173"
     env_file:
-      - /home/fran/docker/envs/frontend_ainotege.env
+      - /home/fran/docker/envs/frontend_ainotegen.env
     depends_on:
       - backend
     networks:
