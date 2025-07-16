@@ -1,0 +1,17 @@
+# frontend/Dockerfile.dev
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copiamos solo package.json y lock para instalar deps (mejor para caching)
+COPY package*.json ./
+
+RUN npm install
+
+# Luego copiamos el resto del código
+COPY . .
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host"]

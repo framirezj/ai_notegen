@@ -5,6 +5,9 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copiar los archivos
+# Instalar curl (necesario para el healthcheck) y limpiar la caché de apt
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
