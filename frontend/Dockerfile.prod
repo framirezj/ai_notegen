@@ -2,7 +2,12 @@
 
 # --- Etapa de Construcción (Builder) ---
 # Usamos una imagen alpine para que sea ligera
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder 
+
+# 1. Declara que este Dockerfile acepta un "argumento de construcción".
+ARG VITE_API_URL
+# 2. Convierte ese argumento en una variable de entorno REAL para esta etapa.
+ENV VITE_API_URL=${VITE_API_URL}
 
 
 WORKDIR /app
