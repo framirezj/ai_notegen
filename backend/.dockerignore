@@ -23,3 +23,7 @@ backend.env
 # Artefactos de pruebas y cobertura
 .pytest_cache
 coverage.xml
+
+# Dockerfiles - Para evitar que se copien a sí mismos.
+Dockerfile
+Dockerfile.*
