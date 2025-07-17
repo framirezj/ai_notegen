@@ -1,0 +1,25 @@
+# Entornos virtuales de Python
+.venv
+venv/
+env/
+
+# Caché de bytecode de Python y artefactos de instalación
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de entorno y secretos
+.env
+.env.*
+!.env.example
+backend.env
+
+# Metadatos del sistema de control de versiones y del editor
+.git
+.gitignore
+.vscode/
+
+# Artefactos de pruebas y cobertura
+.pytest_cache
+coverage.xml

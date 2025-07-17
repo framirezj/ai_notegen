@@ -1,5 +1,27 @@
+# Dependencias de Node - Se instalan dentro del contenedor
+# Dependencias de Node - Se deben instalar dentro del contenedor.
 node_modules
+
+# Artefactos de construcción (Build artifacts)
 dist
 .env
+.vite
+
+# Archivos de logs
 npm-debug.log
+*.log
+
+# Archivos de entorno y secretos - Nunca deben ir en la imagen.
+# El ! anula la regla anterior para un archivo específico.
+.env
+.env.*
+!.env.example
+
+# Metadatos del sistema de control de versiones y del editor
+.git
+.gitignore
+.vscode/
+
+# Dockerfiles - Para evitar que se copien a sí mismos.
 Dockerfile
+Dockerfile.*
