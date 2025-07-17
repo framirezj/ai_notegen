@@ -1,0 +1,31 @@
+# backend/Dockerfile
+FROM python:3.11-slim
+
+# Variables de entorno para optimizar Python en Docker
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /app
+
+# Crear un grupo y usuario sin privilegios para ejecutar la aplicación
+RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
+
+# Copiar primero el archivo de dependencias para aprovechar el caché de Docker
+COPY requirements.txt .
+
+# Instalar dependencias. Asegúrate de que 'gunicorn' esté en tu requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar el código de la aplicación
+COPY ./app ./app
+
+# Cambiar el propietario de los archivos al usuario sin privilegios
+RUN chown -R appuser:appgroup /app
+
+# Cambiar al usuario sin privilegios
+USER appuser
+
+EXPOSE 8000
+
+# Comando para ejecutar la aplicación en producción con Gunicorn y Uvicorn workers
+CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "--bind", "0.0.0.0:8000"]

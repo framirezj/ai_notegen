@@ -1,26 +1,43 @@
 version: '3.8'
-
 services:
   backend:
-    build: ./backend
-    ports:
-      - "8000:8000"
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    restart: unless-stopped
     env_file:
-      - /home/fran/docker/envs/backend_ainotegen.env
+      # 1. Apunta a un archivo de entorno UNIFICADO en el servidor.
+      - /home/fran/docker/envs/app.env
     networks:
       - app-network
+    # Publica el puerto del contenedor solo en el localhost del servidor.
+    ports:
+      - "127.0.0.1:8000:8000"
 
   frontend:
-    build: ./frontend
-    ports:
-      - "5173:5173"
-    env_file:
-      - /home/fran/docker/envs/frontend_ainotegen.env
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+      args:
+        # 2. Pasa la variable VITE_API_URL al Dockerfile como un argumento de construcción.
+        # Docker Compose reemplazará ${VITE_API_URL} con el valor del archivo de entorno.
+        - VITE_API_URL=${VITE_API_URL}
+    restart: unless-stopped
+    # 3. (Opcional pero recomendado) Puedes añadir el env_file aquí también si el frontend
+    # necesitara variables en tiempo de ejecución en el futuro, pero no es necesario para este caso.
+    # env_file:
+    #  - /etc/ainotegen/app.env
     depends_on:
       - backend
     networks:
       - app-network
+    # Publica el puerto del contenedor solo en el localhost del servidor.
+    ports:
+      - "127.0.0.1:8080:80"
 
 networks:
   app-network:
     driver: bridge
+
+
+# docker-compose -f docker-compose.prod.yml --env-file /home/fran/docker/envs/app.env up --build -d
