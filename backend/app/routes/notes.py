@@ -63,6 +63,3 @@ def update_note(note_id: int, note: schemas.NoteCreate , db: Session = Depends(g
 
     db.refresh(db_note) # Actualiza el objeto en la sesión
     return db_note      # Devuelve el objeto ya actualizado
-
-
-
