@@ -40,4 +40,4 @@ networks:
     driver: bridge
 
 
-# docker-compose -f docker-compose.prod.yml --env-file /home/fran/docker/envs/app.env up --build -d
+# sudo docker-compose -f docker-compose.prod.yml --env-file /home/fran/docker/envs/app.env up --build -d
