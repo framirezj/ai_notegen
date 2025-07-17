@@ -8,10 +8,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-FRONTEND_URL = os.getenv("FRONTEND_URL")
-
-if not FRONTEND_URL:
-    raise ValueError("FRONTEND_URL no está definida en el archivo .env")
+# Prioriza la variable de producción (lista de orígenes separados por coma)
+# Si no existe, usa la variable de desarrollo (una sola URL) como fallback.
+cors_origins_str = os.getenv("CORS_ORIGINS")
+if cors_origins_str:
+    origins = cors_origins_str.split(',')
+else:
+    origins = [os.getenv("FRONTEND_URL", "http://localhost:5173")]
 
 
 #Esta línea crea automáticamente las tablas en la base de datos (si no existen) 
@@ -24,7 +27,7 @@ app = FastAPI()
 # 👇 Aquí configuramos CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[FRONTEND_URL],  # o ["*"] para permitir todo (menos seguro)
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
