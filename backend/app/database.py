@@ -19,3 +19,11 @@ base = declarative_base()
 
 print("✅ Conectado a la base de datos PostgreSQL")
 
+
+# Función de dependencia para obtener una sesión de base de datos
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

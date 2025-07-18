@@ -1,7 +1,7 @@
 #importamos fastapi
 from fastapi import FastAPI, status
 from . import models, database
-from .routes import notes
+from .routes import notes, auth
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
@@ -40,5 +40,6 @@ def health_check():
 
 #le pasamos el router quien tiene las rutas
 app.include_router(notes.router)
+app.include_router(auth.router)
 
 

@@ -11,6 +11,7 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/devdb
       - FRONTEND_URL=http://localhost:5173
+      - SECRET_KEY=123456
     volumes:
       - ./backend:/app
     networks:
@@ -51,7 +52,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=devdb
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
