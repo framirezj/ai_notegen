@@ -4,6 +4,8 @@ import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
 import { getNotes, deleteNote } from "./services/api";
 import { Plus, X } from "lucide-react";
+import Login from "./pages/Login";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -43,6 +45,7 @@ function App() {
   };
 
   return (
+    <AuthProvider>
     <div className="max-w-2xl mx-auto mt-10 space-y-6">
       <h1 className="text-3xl font-bold text-center text-gray-100">
         🧠 AI NoteGen
@@ -80,7 +83,10 @@ function App() {
         onEdit={handleEditNote}
         onDelete={handleDeleteNote}
       />
+
+      <Login />
     </div>
+    </AuthProvider>
   );
 }
 
