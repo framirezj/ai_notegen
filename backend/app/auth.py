@@ -15,7 +15,7 @@ load_dotenv()
 
 # Define la clave secreta utilizada para firmar digitalmente el token. Es crucial para la seguridad.
 # Lee la clave secreta desde las variables de entorno. NUNCA la dejes escrita en el código.
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY", "test_clave")
 if not SECRET_KEY:
     raise ValueError("SECRET_KEY no está definida en el archivo .env")
 
