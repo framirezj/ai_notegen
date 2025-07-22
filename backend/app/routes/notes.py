@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from .. import models, schemas
 from ..database import get_db
+from ..auth import get_current_user
 
 router = APIRouter(
     tags=["Notes"],
@@ -11,10 +12,10 @@ router = APIRouter(
 #rutas
 
 #el argumento response_model=schemas.Note,  dice a FastAPI que la respuesta debe tener la estructura del modelo Note (usando Pydantic para validación y serialización)
-@router.post("/", response_model=schemas.NoteCreate, status_code=status.HTTP_201_CREATED)
-def create_note(note: schemas.NoteCreate, db: Session = Depends(get_db)):
-    # Creamos una instancia de Note con los datos del body
-    db_note = models.Note(**note.model_dump())
+@router.post("/", response_model=schemas.NoteOut, status_code=status.HTTP_201_CREATED)
+def create_note(note: schemas.NoteCreate, db: Session = Depends(get_db), current_user: models.User = Depends(get_current_user)):
+    # Creamos una instancia de Note con los datos del body y ademas le enviamos el id del usuario autenticado
+    db_note = models.Note(**note.model_dump(), user_id = current_user.id)
     db.add(db_note)
     db.commit()
     # Refrescamos para obtener el ID asignado por la base de datos

@@ -8,7 +8,7 @@ class NoteBase(BaseModel): #in
     content: str
 
 class NoteCreate(NoteBase):
-    user_id: int
+    pass
 
 class NoteOut(NoteBase): #out
     id: int
