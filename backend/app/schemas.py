@@ -3,12 +3,17 @@ from pydantic import BaseModel, EmailStr
 #notes
 
 #se definen los campos obligatorios
-class NoteCreate(BaseModel): #in
+class NoteBase(BaseModel): #in
     title: str
     content: str
 
-class Note(NoteCreate): #out
+class NoteCreate(NoteBase):
+    user_id: int
+
+class NoteOut(NoteBase): #out
     id: int
+    user_id: int
+
 
     class Config:
         from_attributes = True

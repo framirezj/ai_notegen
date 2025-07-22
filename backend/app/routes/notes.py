@@ -11,7 +11,7 @@ router = APIRouter(
 #rutas
 
 #el argumento response_model=schemas.Note,  dice a FastAPI que la respuesta debe tener la estructura del modelo Note (usando Pydantic para validación y serialización)
-@router.post("/", response_model=schemas.Note, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=schemas.NoteCreate, status_code=status.HTTP_201_CREATED)
 def create_note(note: schemas.NoteCreate, db: Session = Depends(get_db)):
     # Creamos una instancia de Note con los datos del body
     db_note = models.Note(**note.model_dump())
@@ -22,7 +22,7 @@ def create_note(note: schemas.NoteCreate, db: Session = Depends(get_db)):
     return db_note
 
 
-@router.get("/", response_model=list[schemas.Note]) #le diremos a fastapi que va salir y sera una lista de objetos de Note
+@router.get("/", response_model=list[schemas.NoteOut]) #le diremos a fastapi que va salir y sera una lista de objetos de Note
 def get_notes(db: Session = Depends(get_db)):
     #ocupamos el metodo query de la Session a la bd y traemos todos los registros de la tabla Note
     return db.query(models.Note).all()
@@ -38,7 +38,7 @@ def delete_note(note_id: int ,db: Session = Depends(get_db)):
     db.commit()
 
 #recibiremos un id y responderemos con un objeto tipo nota a json
-@router.put("/{note_id}", response_model=schemas.Note)
+@router.put("/{note_id}", response_model=schemas.NoteOut)
 def update_note(note_id: int, note: schemas.NoteCreate , db: Session = Depends(get_db)):
     
     db_note = db.query(models.Note).filter(models.Note.id == note_id).first()
