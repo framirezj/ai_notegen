@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
+import MainLayout from "./layouts/MainLayout";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -31,7 +32,9 @@ function App() {
         />
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/notes" element={<NotesPage />} />
+          <Route element={<MainLayout />}>
+            <Route path="/notes" element={<NotesPage />} />
+          </Route>
         </Route>
       </Routes>
     </>
