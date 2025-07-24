@@ -19,7 +19,7 @@ const Navbar = () => {
         <h1 className="text-xl font-bold text-gray-100">📝 🧠 AI NoteGen</h1>
       <button onClick={handleLogout} className="flex items-center gap-2 bg-gray-700 text-gray-300 hover:text-red-700 hover:bg-red-300 px-4 py-2 rounded-lg transition-all duration-200">
         <LogOut className="w-5 h-5"/>
-        <span>Cerrar sesión</span>
+        <span className="hidden sm:inline">Cerrar sesión</span>
       </button>
     </nav>
   );
