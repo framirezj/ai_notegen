@@ -42,7 +42,7 @@ const NotesPage = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 space-y-6">
+    <div className="w-[80%] sm:w-auto max-w-2xl mx-auto mt-10 space-y-6">
 
 
       <AddTask handleToggleForm={handleToggleForm} showForm={showForm} />
