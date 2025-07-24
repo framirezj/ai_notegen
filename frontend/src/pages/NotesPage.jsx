@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getNotes, deleteNote } from "./services/api";
+import { getNotes, deleteNote } from "../services/api";
 import NoteForm from "../components/NoteForm"
 import NoteList from "../components/NoteList"
 import AddTask from "../components/AddTask"
