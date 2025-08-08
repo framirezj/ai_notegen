@@ -1,6 +1,6 @@
-# AI NoteGen (aun no disponible IA)
+# Notes Fullstack
 
-Una aplicación web para generar, guardar y gestionar notas potenciadas por Inteligencia Artificial.
+Una aplicación web para generar, guardar y gestionar notas.
 
 ## Descripción General
 
