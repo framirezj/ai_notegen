@@ -7,7 +7,7 @@ Una aplicación web para generar, guardar y gestionar notas.
 Este proyecto consiste en una aplicación full-stack:
 
 *   **Frontend:** Una aplicación de una sola página (SPA) construida con Vite + React, servida con Nginx para producción.
-*   **Backend:** Una API RESTful construida en Python (por ejemplo, con FastAPI o Flask) que se encarga de la lógica de negocio y la comunicación con el modelo de IA. *(Nota: los detalles del backend son una suposición)*.
+*   **Backend:** Una API RESTful construida en Python (por ejemplo, con FastAPI o Flask) que se encarga de la lógica de negocio. *(Nota: los detalles del backend son una suposición)*.
 
 Ambos servicios están contenedorizados con Docker para facilitar el desarrollo y el despliegue.
 
